@@ -1,6 +1,11 @@
 # SenYing
 
-一个以 WPF 为主的桌面应用解决方案（同时包含 MAUI、公共类库与服务、单元测试等子项目）。本文件聚焦于 WPF 桌面应用的使用与开发说明。
+这是一款学习性质软件, 主要目的是用于对WPF的网络抓取, 视频显示等功能的练手. 本软件的核心功能是获取https://jszy333.com/ 爬取的数据并展示,还有对m3u8资源的实时浏览.  
+
+本软件所有内容均收集于互联网各种视频网站，本软件不会保存,复制,传播任何资源。本软件不负任何法律责任。
+此外, 本软件只供学习目的, 禁止一切商用, 因使用者滥用导致的问题, 本软件作者概不负责. 
+如果侵犯了您的权益，请通知我，我会第一时间及时删除侵权内容，请在下载测试后24小时内删除,谢谢合作！
+请支持正版！
 
 ## 项目概览
 - **主应用（WPF）**: 位于 `WPF/SenYing.WPF/SenYing.WPF`，采用 MVVM 模式与依赖注入，集成 Material Design 风格与常用开发工具链。
@@ -86,25 +91,3 @@ dotnet test .\WPF\SenYing.WPF.Tests
 - 运行时报缺少运行时：请确认目标机器已安装对应的 .NET Desktop Runtime；或使用自包含发布。
 - XAML 样式不生效：检查 `App.xaml` 的资源字典引用顺序与键名，确保 Material 资源已加载。
 - 生成产物过大：尝试 `PublishTrimmed`、`PublishSingleFile` 并评估对反射的影响。
-
-## 许可（MIT）
-
-Copyright (c) 2025
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
