@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="SenYing.WPF.Views.UserControls.VideoViewUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:SenYing.WPF.ViewModels.UserControls"
+             d:DataContext="{d:DesignInstance vm:VideoViewUserControlVm}"
+             d:DesignHeight="600" d:DesignWidth="900">
+
+  <Grid Margin="10">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="500"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <!-- 左侧封面 -->
+    <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" CornerRadius="6" Margin="0,0,10,0">
+      <Image Source="{Binding Info.CoverUrl}" Stretch="UniformToFill"/>
+    </Border>
+
+    <Grid Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <!-- 标题 + 基本信息 -->
+      <StackPanel Grid.Row="0" Orientation="Vertical" Margin="10">
+        <TextBlock Text="{Binding Info.Name}" FontSize="22" FontWeight="Bold"/>
+        <TextBlock Text="{Binding Info.Alias}" FontSize="14" Foreground="Gray"/>
+
+        <WrapPanel>
+          <TextBlock Text="导演：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.Director}" Margin="5,0"/>
+        </WrapPanel>
+        <WrapPanel>
+          <TextBlock Text="演员：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.Actor}" Margin="5,0"/>
+        </WrapPanel>
+        <WrapPanel>
+          <TextBlock Text="类型：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.Type}" Margin="5,0"/>
+        </WrapPanel>
+        <WrapPanel>
+          <TextBlock Text="地区：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.Area}" Margin="5,0"/>
+        </WrapPanel>
+        <WrapPanel>
+          <TextBlock Text="语言：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.Language}" Margin="5,0"/>
+        </WrapPanel>
+        <WrapPanel>
+          <TextBlock Text="状态：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.Status}" Margin="5,0"/>
+        </WrapPanel>
+        <WrapPanel>
+          <TextBlock Text="上传时间：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.UploadTime}" Margin="5,0"/>
+        </WrapPanel>
+        <WrapPanel>
+          <TextBlock Text="更新时间：" FontWeight="Bold"/>
+          <TextBlock Text="{Binding Info.UpdateTime}" Margin="5,0"/>
+        </WrapPanel>
+      </StackPanel>
+
+      <!-- 简介 + 剧集 -->
+      <ScrollViewer Grid.Row="1">
+        
+        <DockPanel  Margin="10">
+          <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="简介：" FontWeight="Bold" Margin="0,0,0,5"/>
+            <ScrollViewer Height="100">
+              <TextBlock Text="{Binding Info.Description}" TextWrapping="Wrap"/>
+            </ScrollViewer>
+          </StackPanel>
+
+          <StackPanel DockPanel.Dock="Bottom" Margin="0,10,0,0">
+            <TextBlock Text="剧集：" FontWeight="Bold" Margin="0,0,0,5"/>
+            <ItemsControl ItemsSource="{Binding Episodes}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <WrapPanel IsItemsHost="True"/>
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Button Content="{Binding Title}"
+                        Command="{Binding DataContext.ChangeEpisodeCommand,
+                                  RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        CommandParameter="{Binding Url}"
+                  Margin="5" Padding="10,5"/>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </StackPanel>
+        </DockPanel>
+      </ScrollViewer>
+    </Grid>
+  </Grid>
+</UserControl>

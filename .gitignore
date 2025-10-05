@@ -1,0 +1,46 @@
+# .NET / MAUI / WPF
+
+# IDE directories
+.vs/
+.rider/
+.idea/
+
+# Build output
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+# MAUI/Platform specific intermediates
+**/AppPackages/
+**/BundleArtifacts/
+**/TestResults/
+**/artifacts/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Logs and caches
+*.log
+*.cache/
+**/.DS_Store
+Thumbs.db
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Visual Studio Code
+.vscode/
+
+# Rider/JetBrains
+.idea/
+.jb/
+
+# Others
+*.swp
+*.tmp

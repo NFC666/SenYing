@@ -1,0 +1,46 @@
+﻿<Window x:Class="SenYing.WPF.Views.VideoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="VideoWindow" Height="500" Width="900"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        KeyDown="Window_KeyDown"
+        ResizeMode="CanResize">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+    <DockPanel
+          x:Name="TopBar"
+          Grid.Row="0"
+          VerticalAlignment="Top"
+          LastChildFill="False" Cursor="">
+      <Button
+          Click="Close"
+          DockPanel.Dock="Right"
+          Style="{StaticResource MaterialDesignFlatButton}">
+        <md:PackIcon  Kind="Close"/>
+      </Button>
+      <Button
+          Click="WindowRestore"
+          DockPanel.Dock="Right"
+          Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand">
+        <md:PackIcon Kind="WindowRestore"/>
+      </Button>
+      <Button
+          DockPanel.Dock="Right"
+          Click="WindowMinimize"
+          Style="{StaticResource MaterialDesignFlatButton}">
+        <md:PackIcon Kind="WindowMinimize"/>
+      </Button>
+    </DockPanel>
+    <wv2:WebView2 Grid.Row="1" x:Name="webView" />
+  </Grid>
+</Window>
