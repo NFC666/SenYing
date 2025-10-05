@@ -38,7 +38,7 @@ namespace SenYing.Services
             GetSearchItemsAsync(string keyword, int page)
         {
             //var url = $"{BaseUrl}index.php/vod/search.html?wd={keyword}";
-            var url = $"{BaseUrl}index.php/vod/search/page/{page}/wd/{keyword}.html?ac=detail";
+            var url = $"index.php/vod/search/page/{page}/wd/{keyword}.html?ac=detail";
 
             var html = await _httpClient.GetStringAsync(url);
 
