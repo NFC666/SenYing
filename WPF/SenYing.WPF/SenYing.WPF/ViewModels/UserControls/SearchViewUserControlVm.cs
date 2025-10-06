@@ -57,8 +57,7 @@ namespace SenYing.WPF.ViewModels.UserControls
         public async Task LoadDataAsync(string keyword)
         { 
             IsBusy = true;
-            VideoInfos = await LoadBaseVideoInfos(keyword, _currentPage);
-            await LoadDetailAsync();
+            VideoInfos = await LoadInfos(keyword, _currentPage);
             IsBusy = false;
         }
 
@@ -81,7 +80,6 @@ namespace SenYing.WPF.ViewModels.UserControls
                     {
                         VideoInfos.Add(info);
                     }
-                    await LoadDetailAsync(moreInfos);
                 }
                 else
                 {
@@ -99,49 +97,10 @@ namespace SenYing.WPF.ViewModels.UserControls
         }
 
         private async Task<ObservableCollection<VideoInfo>>
-                LoadBaseVideoInfos(string keyword, int page)
+                LoadInfos(string keyword, int page)
         {
             return new ObservableCollection<VideoInfo>(await _m3u8Service
                         .GetSearchItemsAsync(keyword, page));
-        }
-
-        public async Task LoadDetailAsync(IEnumerable<VideoInfo>? targetInfos = null)
-        {
-            var infos = targetInfos ?? VideoInfos;
-
-            var semaphore = new SemaphoreSlim(5);
-            var tasks = infos.Select(async video =>
-            {
-                await semaphore.WaitAsync();
-                try
-                {
-                    var info = await _m3u8Service
-                                .GetDetailSectionItemsAsyncBySelfUrlAsync(video.SelfUrl);
-
-                    video.Status = info.Status;
-                    video.Alias = info.Alias;
-                    video.Area = info.Area;
-                    video.Director = info.Director;
-                    video.Type = info.Type;
-                    video.UpdateTime = info.UpdateTime;
-                    video.UploadTime = info.UploadTime;
-                    video.Language = info.Language;
-                    video.CoverUrl = info.CoverUrl;
-                    video.Description = info.Description;
-                    video.Actor = info.Actor;
-                    video.Episodes = info.Episodes;
-                }
-                catch (Exception)
-                {
-                    video.Name = "获取详情失败";
-                }
-                finally
-                {
-                    semaphore.Release();
-                }
-            });
-
-            await Task.WhenAll(tasks);
         }
     }
 }
