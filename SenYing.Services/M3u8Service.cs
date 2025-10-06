@@ -149,9 +149,6 @@ namespace SenYing.Services
 
                 }
             }
-
-            //第一个数据所有的值是null, 所以去掉
-            list.RemoveAt(0);
             return list;
         }
 
